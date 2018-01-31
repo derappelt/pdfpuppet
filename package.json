@@ -1,0 +1,15 @@
+{
+  "name": "pdfpuppet",
+  "version": "1.0.0",
+  "description": "",
+  "main": "pdfpuppet.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Simon Appelt <appelt@cekom.de>",
+  "license": "MIT",
+  "dependencies": {
+    "minimist": "^1.2.0",
+    "puppeteer": "^1.0.0"
+  }
+}

@@ -1,0 +1,1 @@
+./pdfpuppet.js "https://google.com" --path google.pdf --format A4 --printBackground true --margin 5mm

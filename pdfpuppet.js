@@ -2,25 +2,34 @@
 const puppeteer = require('puppeteer');
 const argv = require('minimist')(process.argv.slice(2));
 
-const options = {
-  path: argv.path || '',
-  scale: Number(argv.path) || 1,
-  displayHeaderFooter: (argv.displayHeaderFooter == 'true' || argv.displayHeaderFooter == '1'),
-  headerTemplate: argv.headerTemplate || '',
-  footerTemplate: argv.footerTemplate || '',
-  printBackground: (argv.printBackground == 'true' || argv.printBackground == '1'),
-  landscape: (argv.landscape == 'true' || argv.landscape == '1'),
-  pageRanges: argv.pageRanges || '',
-  format: argv.format || 'Letter',
-  width: argv.width || '',
-  height: argv.height || '',
+const defaultOptions = {
+  path: '',
+  scale: 1,
+  displayHeaderFooter: false,
+  headerTemplate: '',
+  footerTemplate: '',
+  printBackground: false,
+  landscape: false,
+  pageRanges: '',
+  format: 'Letter',
+  width: '',
+  height: '',
   margin: {
-    top: argv['margin-top'] || argv.margin || '0',
-    right: argv['margin-right'] || argv.margin || '0',
-    bottom: argv['margin-bottom'] || argv.margin || '0',
-    left: argv['margin-left'] || argv.margin || '0'
+    top: '0',
+    right: '0',
+    bottom: '0',
+    left: '0'
   }
 };
+
+argv.margin= {
+  top: argv['margin-top'] || argv.margin || defaultOptions.margin.top,
+  right: argv['margin-right'] || argv.margin || defaultOptions.margin.right,
+  bottom: argv['margin-bottom'] || argv.margin || defaultOptions.margin.bottom,
+  left: argv['margin-left'] || argv.margin || defaultOptions.margin.left
+}
+
+const options = {...defaultOptions, ...argv};
 
 (async () => {
   const browser = await puppeteer.launch();
